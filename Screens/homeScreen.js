@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Image, ImageBackground, Text, TouchableOpacity, View} from "react-native";
+import {Image, ImageBackground, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {homePageStyles} from "../Styles/homePageStyles";
 import {deadLift} from "./deadLift";
 import {Squat} from "./squat";
@@ -10,7 +10,7 @@ import {BenchPress} from "./benchPress";
 export function homeScreen({navigation}) {
     return (
         <ImageBackground source={{uri:'https://i.pinimg.com/474x/83/6f/5d/836f5d040eabd08f33c9d9e44615cadf.jpg'}} style={{width:'100%', height:'100%'}}>
-            <View style={homePageStyles.mainContainer}>
+            <ScrollView contentContainerStyle={homePageStyles.mainContainer}>
                 <TouchableOpacity style={homePageStyles.exercisePanel} onPress={() => navigation.navigate('Dead Lift', deadLift)}>
                     <ImageBackground
                         source={{uri:'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/deadlift-workout-for-back-royalty-free-image-527680187-1553003041.jpg'}}
@@ -60,7 +60,7 @@ export function homeScreen({navigation}) {
                         <Text style={homePageStyles.panelText}>PRESS</Text>
                     </ImageBackground>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </ImageBackground>
     );
 }
