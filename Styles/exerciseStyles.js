@@ -14,7 +14,7 @@ export const exerciseStyles = StyleSheet.create({
         paddingBottom:10
     },
     currentWorkout:{
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems:'center',
     },
     sets:{

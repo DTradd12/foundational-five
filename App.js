@@ -1,32 +1,27 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Component} from "react";
-import {deadLift} from "./Screens/deadLift";
-import {homeScreen} from "./Screens/homeScreen";
-import {Squat} from "./Screens/squat";
-import {BenchPress} from "./Screens/benchPress";
-import {ShoulderPress} from "./Screens/shoulderPress";
-import {BarbellRow} from "./Screens/barbellRow";
+import {deadliftScreen} from "./Screens/deadliftScreen";
+import 'react-native-gesture-handler';
+import {HomeScreen} from "./Screens/homeScreen";
+import {SafeAreaProvider} from "react-native-safe-area-context/src/SafeAreaContext";
+import {StatusBar} from "expo-status-bar";
+import {Provider} from "react-redux";
+import {store} from "./stores/store";
 
-const Stack = createNativeStackNavigator();
-
-class App extends Component{
-    render() {
-        return (
+export default function App() {
+    const Stack = createNativeStackNavigator();
+    return (
+        <Provider store={store}>
             <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name="Foundational 5" component={homeScreen} />
-                    <Stack.Screen name="Dead Lift" component={deadLift}/>
-                    <Stack.Screen name="Squat" component={Squat}/>
-                    <Stack.Screen name="Bench Press" component={BenchPress}/>
-                    <Stack.Screen name="Shoulder Press" component={ShoulderPress}/>
-                    <Stack.Screen name="Barbell Row" component={BarbellRow}/>
-                </Stack.Navigator>
+                <SafeAreaProvider>
+                    <StatusBar barStyle="dark-content" />
+                    <Stack.Navigator>
+                        <Stack.Screen name="Foundational 5" component={HomeScreen} options={{headerShown: false}}/>
+                        <Stack.Screen name="Dead Lift" component={deadliftScreen} />
+                    </Stack.Navigator>
+                </SafeAreaProvider>
             </NavigationContainer>
-        );
-    }
+        </Provider>
+    );
 }
-
-
-export default App;
