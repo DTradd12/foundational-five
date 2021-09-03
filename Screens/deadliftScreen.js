@@ -11,7 +11,7 @@ export function deadliftScreen(props) {
     const [repText, setRepText] = useState(undefined);
     const [weightText, setWeightText] = useState(undefined);
     const [pr, setPr] = useState(0);
-    const [sets, setSets] = useState([]);
+    const [sets, setSets] = useState(false);
     const [isVisable, setIsVisable] = useState(false);
     const [reload, setReload] = useState(false);
 
@@ -33,7 +33,7 @@ export function deadliftScreen(props) {
                 [{text: "Try Again"}]
             )
         } else {
-            const newSets = sets;
+            const newSets = [];
             const newSet = {
                 reps: repText,
                 weight: weightText,
@@ -60,9 +60,11 @@ export function deadliftScreen(props) {
     }
 
     const deleteSet = (index) => {
-        const sets = sets;
-        sets.splice(index,1)
-        setSets(sets);
+        console.log(sets);
+        const newSets = sets;
+        newSets.splice(index,1)
+        setSets(newSets);
+        setReload(!reload);
     }
 
     const prComponent =
@@ -134,7 +136,7 @@ export function deadliftScreen(props) {
                 {prComponent}
             </View>
             <View style={exerciseStyles.currentWorkout}>
-                <Text style={[exerciseStyles.panelText, {paddingBottom:10}]}>Total Sets: {sets.length}</Text>
+                <Text style={[exerciseStyles.panelText, {paddingBottom:10}]}>Total Sets: {sets.length ? sets.length : '0'}</Text>
                 {setComponent}
                 {newSet}
                 {finishWorkout}
